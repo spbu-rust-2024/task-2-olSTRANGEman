@@ -5,28 +5,27 @@ use std::io;
 fn check(line: &str) -> String{
     let line_b = line.as_bytes();
     let mut rem = &line[0..1];
-// Как принято итерироваться по строкам nth/bytes/vec?
+
     
-    if line.len()%2==1{    
-        for i in 0..line_b.len()-1{
-            for j in 1..=i{
-                if line_b[i+j] != line_b[i-j]{
-                    // не смог объединить два условия для окончания 
-                    if (i+j)-(i-j)-1 > rem.len(){
-                        rem = &line[i-j+1..i+j];
-                    }
-                        break;
+        
+    for i in 0..line_b.len()-1{
+        for j in 1..=i{
+            if line_b[i+j] != line_b[i-j]{
+                // не смог объединить два условия для окончания 
+                if (i+j)-(i-j)-1 > rem.len(){
+                    rem = &line[i-j+1..i+j];
                 }
-                if i+j == line_b.len()-1{
-                    if (i+j)-(i-j)-1 > rem.len(){
-                        rem = &line[i-j..i+j+1];
-                    }
-                        break;
+                    break;
+            }
+            if i+j == line_b.len()-1{
+                if (i+j)-(i-j)-1 > rem.len(){
+                    rem = &line[i-j..i+j+1];
                 }
+                    break;
             }
         }
+    }
 
-    }else{
 
         for i in 0..line_b.len()-1{
             for j in 1..=i{
@@ -38,19 +37,17 @@ fn check(line: &str) -> String{
                 }
                 if i+j-1 == line_b.len()-1{
                     if (i+j-1)-(i-j)-1 > rem.len(){
-                        rem = &line[i-j..i+j];
-                    }
-                        break;
+                    rem = &line[i-j..i+j];
                 }
+                    break;
             }
         }
     }
     
-    
     rem.to_string()
     }
 
-//разница &str\&String\str\String?
+//проблема с проверкой последнего числа, разница &str\&String\str\String
 
 
 
