@@ -4,8 +4,11 @@ use std::io;
 
 fn check(line: &str) -> String{
     let line_b = line.as_bytes();
+    if line.len() == 0{
+        return String::new();
+    }
     let mut rem = &line[0..1];
-
+            
     
         
     for i in 0..line_b.len()-1{
